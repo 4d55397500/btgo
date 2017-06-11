@@ -1,17 +1,19 @@
-package btgo;
-
+// Package btgo contains typical operations
+// over binary search trees
+package btgo
 
 import "fmt"
 
-
-type node struct {
-	data int;
-	left *node;
-	right *node;
+// A Node holds an int value and pointers
+// to left and right child nodes.
+type Node struct {
+	Data  int
+	Left  *Node
+	Right *Node
 }
 
 // Check that the tree is a binary search tree
-func (n *node) IsBinarySearchTree() bool {
+func (n *Node) IsBinarySearchTree() bool {
 
 	condLeft := true
 	condRight := true
@@ -19,67 +21,62 @@ func (n *node) IsBinarySearchTree() bool {
 	if n == nil {
 		return true
 	}
-	if n.left != nil {
-		condLeft = n.left.IsBinarySearchTree() && n.data >= n.left.data;
+	if n.Left != nil {
+		condLeft = n.Left.IsBinarySearchTree() && n.Data >= n.Left.Data
 	}
-	if n.right != nil {
-		condRight = n.right.IsBinarySearchTree() && n.data <= n.right.data;
+	if n.Right != nil {
+		condRight = n.Right.IsBinarySearchTree() && n.Data <= n.Right.Data
 	}
 	return condLeft && condRight
 }
 
-// Check for existence of the given node
-func (n *node) Lookup(target int) bool {
-	if (n == nil) {
+// Check for existence of the given Node
+func (n *Node) Lookup(target int) bool {
+	if n == nil {
 		return false
 	}
-	if (target == n.data) {
+	if target == n.Data {
 		return true
-	} else if target < n.data {
-		return n.left.Lookup(target)
-	} else if target > n.data {
-		return n.right.Lookup(target)
+	} else if target < n.Data {
+		return n.Left.Lookup(target)
+	} else if target > n.Data {
+		return n.Right.Lookup(target)
 	}
 	return false
 }
 
-
-// Insert a node and return the new tree
-func (n *node) Insert(data int) *node {
+// Insert a Node and return the new tree
+func (n *Node) Insert(Data int) *Node {
 	if n == nil {
-		return &node{data, nil, nil}
-	} else if data < n.data {
-		n.left = n.left.Insert(data)
-	} else if data > n.data {
-		n.right = n.right.Insert(data)
+		return &Node{Data, nil, nil}
+	} else if Data < n.Data {
+		n.Left = n.Left.Insert(Data)
+	} else if Data > n.Data {
+		n.Right = n.Right.Insert(Data)
 	}
 	return n
 }
 
-
 // Print the tree in order
-func (n *node) PrintTree() {
-	if n != nil && n.left != nil {
-		n.left.PrintTree()
+func (n *Node) PrintTree() {
+	if n != nil && n.Left != nil {
+		n.Left.PrintTree()
 	}
 	if n != nil {
-		fmt.Println(n.data)
+		fmt.Println(n.Data)
 	}
-	if n != nil && n.right != nil {
-		n.right.PrintTree()
+	if n != nil && n.Right != nil {
+		n.Right.PrintTree()
 	}
 }
 
-
 // Return maximum depth of the tree
-func (n *node) MaxDepth() int {
+func (n *Node) MaxDepth() int {
 	if n == nil {
 		return 0
 	}
-	return maxInt(n.left.MaxDepth() + 1, n.right.MaxDepth() + 1)
+	return maxInt(n.Left.MaxDepth()+1, n.Right.MaxDepth()+1)
 }
-
-
 
 func maxInt(a int, b int) int {
 	if a >= b {

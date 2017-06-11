@@ -1,10 +1,10 @@
+// Package btgo provides common operations over
+// binary search trees
 package btgo
-
 
 import (
 	"testing"
 )
-
 
 func TestNode_IsBinarySearchTree(t *testing.T) {
 	n := SampleTree()
@@ -19,24 +19,22 @@ func TestNode_Lookup(t *testing.T) {
 	twoExists := n.Lookup(2)
 	threeExists := n.Lookup(3)
 	if !oneExists {
-		t.Error("Expeted node with data 1; not found")
+		t.Error("Expected Node with Data 1; not found")
 	}
 	if !twoExists {
-		t.Error("Expected node with data 2; not found")
+		t.Error("Expected Node with Data 2; not found")
 	}
 	if threeExists {
-		t.Error("Found unexpected node with data 3")
+		t.Error("Found unexpected Node with Data 3")
 	}
 }
-
 
 func TestNode_Insert(t *testing.T) {
 	n := SampleTree().Insert(-1)
-	if n.left.data != -1 {
-		t.Error("Expected inserted left child node with data -1, got ", n.left.data)
+	if n.Left.Data != -1 {
+		t.Error("Expected inserted Left child Node with Data -1, got ", n.Left.Data)
 	}
 }
-
 
 func TestNode_MaxDepth(t *testing.T) {
 	n := SampleTree()
@@ -50,9 +48,8 @@ func TestNode_PrintTree(t *testing.T) {
 	n.PrintTree()
 }
 
-
-func SampleTree() *node {
-	n0 := node{1, nil, nil}
-	n1 := node{2, nil, nil}
-	return n0.Insert(n1.data)
+func SampleTree() *Node {
+	n0 := Node{1, nil, nil}
+	n1 := Node{2, nil, nil}
+	return n0.Insert(n1.Data)
 }
