@@ -3,6 +3,7 @@ btgo
 
 Binary search tree package in Go
 
+[![GoDoc](https://godoc.org/github.com/4d55397500/btgo?status.svg)](https://godoc.org/github.com/4d55397500/btgo)
 
 ### Install
 
@@ -10,4 +11,4 @@ Binary search tree package in Go
 go get github.com/4d55397500/btgo
 ```
 
-[Godoc](https://godoc.org/github.com/4d55397500/btgo)
+
